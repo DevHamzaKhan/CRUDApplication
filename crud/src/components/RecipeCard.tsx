@@ -1,5 +1,5 @@
 import React from "react";
-
+import Link from "next/link";
 export default function RecipeCard({ recipe }: { recipe: any }) {
   return (
     <div className="border rounded-lg p-4 shadow-md max-w-md">
@@ -18,6 +18,9 @@ export default function RecipeCard({ recipe }: { recipe: any }) {
           </li>
         ))}
       </ul>
+      <div>
+        <Link href={`/change/${recipe.id}`}>Change</Link>
+      </div>
     </div>
   );
 }
