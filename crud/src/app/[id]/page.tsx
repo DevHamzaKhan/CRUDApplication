@@ -8,7 +8,7 @@ export default function RecipePage() {
   }
   return (
     <div>
-      <h1>ID: {params.id}</h1>
+      <h1>Update ID: {params.id}</h1>
     </div>
   );
 }
