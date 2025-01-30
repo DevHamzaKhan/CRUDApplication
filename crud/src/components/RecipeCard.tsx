@@ -1,6 +1,16 @@
 import React from "react";
 import Link from "next/link";
+import supabase from "../config/supabaseClient";
 export default function RecipeCard({ recipe }: { recipe: any }) {
+  const handleDelete = async (id: string) => {
+    await supabase
+      .from("recipes")
+      .delete()
+      .eq("id", id);
+    
+      alert("Recipe deleted!");
+  };
+
   return (
     <div className="border rounded-lg p-4 shadow-md max-w-md">
       <h2 className="text-xl font-bold mb-2">{recipe.title}</h2>
@@ -18,8 +28,14 @@ export default function RecipeCard({ recipe }: { recipe: any }) {
           </li>
         ))}
       </ul>
-      <div>
-        <Link href={`/change/${recipe.id}`}>Change</Link>
+      <div className="flex gap-4 mt-4">
+        <Link href={`/change/${recipe.id}`} className="text-blue-500">Change</Link>
+        <button
+          onClick={() => handleDelete(recipe.id)}
+          className="bg-red-500 text-white px-4 py-2 rounded"
+        >
+          Delete
+        </button>
       </div>
     </div>
   );
